@@ -6,29 +6,59 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-
-        <!-- SCRIPTS -->
+        <!-- Bootstrap SCRIPT -->
     <script src="../Scripts/jquery-3.7.1.min.js"></script>
     <script src="../Scripts/bootstrap.bundle.min.js"></script>
     <script src="../Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="../Scripts/DataTables/dataTables.buttons.min.js"></script>
+    <script src="../Scripts/dataTables.bootstrap5.min.js"></script>
+    <script src="../Scripts/DataTables/buttons.html5.js"></script>
+    <script src="../Scripts/moment.min.js"></script>
+    <script src="../Scripts/moment-with-locales.min.js"></script>
+    <script src="../Scripts/pdfobject.js"></script>
+    <script src="../Scripts/bootstrap-datepicker.min.js"></script>
+    <script src="../Scripts/locales/bootstrap-datepicker.it.min.js"></script>
+    <script src="../Scripts/select2.min.js"></script>
+    <script src="../Scripts/jszip.min.js"></script>
+    <link href="../Content/css/select2.min.css" rel="stylesheet" />
+    
 
-
-        <!-- CSS -->
-    <link href="../Style.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Style.css" rel="stylesheet" />
+    <link href="../Content/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <link href="../Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/DataTables/css/buttons.dataTables.min.css" rel="stylesheet" />
     <link href="../Content/bootstrap-datepicker.min.css" rel="stylesheet" />
-    <link href="../Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="../Content/css/select2.min.css" rel="stylesheet" />
+
+
+    <!-- Font Awesome -->
+    <link href="../Content/font-awesome.min.css" rel="stylesheet" />
+
 
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-    </form>
+        <form id="form1" runat="server">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-2">&nbsp;</div>
+                    <div class="col">
+                        <div class="h3 text-center ms-1 me-2">Audit QASE</div>
+                    </div>
+                    <div class="col-2">&nbsp;</div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+            </div>
+        </form>
+
 </body>
 </html>
