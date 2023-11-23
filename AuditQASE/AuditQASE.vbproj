@@ -281,6 +281,7 @@
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Control\ws_DatiAudit.asmx" />
+    <Content Include="Control\ws_GestioneParametri.asmx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Image\green.png" />
     <Content Include="Image\LogoICP.png" />
@@ -545,7 +546,12 @@
       <DependentUpon>ws_DatiAudit.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Control\ws_GestioneParametri.asmx.vb">
+      <DependentUpon>ws_GestioneParametri.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Model\DatiAudit.vb" />
+    <Compile Include="Model\Stabilimenti.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

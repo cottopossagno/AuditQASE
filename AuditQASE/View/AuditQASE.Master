@@ -15,7 +15,7 @@
     <script src="../Scripts/DataTables/buttons.html5.js"></script>
     <script src="../Scripts/moment.min.js"></script>
     <script src="../Scripts/moment-with-locales.min.js"></script>
-    <script src="../Scripts/pdfobject.js"></script>
+  <%--  <script src="../Scripts/pdfobject.js"></script>--%>
     <script src="../Scripts/bootstrap-datepicker.min.js"></script>
     <script src="../Scripts/locales/bootstrap-datepicker.it.min.js"></script>
     <script src="../Scripts/select2.min.js"></script>
@@ -44,10 +44,10 @@
 <body>
         <form id="form1" runat="server">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-2">&nbsp;</div>
                     <div class="col">
-                        <div class="h3 text-center ms-1 me-2">Audit QASE</div>
+                        <div class="h3 text-center fw-bold">Audit QASE</div>
                     </div>
                     <div class="col-2">&nbsp;</div>
                 </div>

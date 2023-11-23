@@ -41,7 +41,7 @@
                     url: "../Control/ws_DatiAudit.asmx/GetListDatiAudit",
                     data:
                     {
-
+                        "StabilimentoAudit": $('#selStabilimento').val()
                     },
                     dataSrc: function (json) {
                        //   alert("Done!");
@@ -55,7 +55,6 @@
                 dom: '<"H"<"left-col"rB><".right{float:right;}"f>>t<"F"i>',
                 columnDefs: [{ target: "_all", className: "dt-control" }],
                 columns: [
-                    { data: "ID", className: "text-center", visible: false },
                     { data: "ID", className: "text-center", visible: false },
                     { data: "StabilimentoAudit", className: "text-center", width: "120" },
                     { data: "NumeroAudit", className: "text-center", width: "80" },
@@ -77,7 +76,7 @@
 
                     }
                 ],
-                select: false,
+                select: true,
                 autoWidth: false,
                 buttons: [
                     { extend: 'excelHtml5', exportOptions: { columns: ':visible' }, className: 'btn-sm' }
@@ -91,8 +90,11 @@
 
 
         $(document).ready(function () {
-
             loadElencoAudit()
+
+        $('#selStabilimento').change(function () {
+            loadElencoAudit()
+        })
 
         })
 
@@ -104,6 +106,25 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="container-fluid">
+
+        <div class="row">
+                    <div class="col-3">
+                        <div class="form-group">
+                            <label for="selStabilimento" class="h6">Stabilimento</label>
+                            <select class="form-group" name="selStabilimento" id="selStabilimento" style="width: 200px">
+                                <option value="%" selected>Tutti</option>
+                                <option value="CUNIAL">CUNIAL</option>
+                                <option value="FRATELLI VARDANEGA">FRATELLI VARDANEGA</option>
+                                <option value="ILCA">ILCA</option>
+                                <option value="MAGAZZINO VENTILATI">MAGAZZINO VENTILATI</option>
+                                <option value="MONFENERA">MONFENERA</option>
+                                <option value="PRELAVORAZIONI">PRELAVORAZIONI</option>
+                                <option value="UFFICI">UFFICI</option>
+                                <option value="VARDANEGA ISIDORO">VARDANEGA ISIDORO</option>
+                            </select>
+                        </div>
+                    </div>
+
         <div class="row">
 
             <div class="col">
@@ -117,7 +138,6 @@
                 <table id="tblElencoAudit" class="compact table table-striped table-bordered" style="width: 100%;">
                     <thead>
                         <tr>
-                            <th></th>
                             <th></th>
                             <th>Stabilimento</th>
                             <th>Numero</th>

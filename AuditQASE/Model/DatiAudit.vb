@@ -27,9 +27,8 @@ Public Class DatiAudit
 
 #End Region
 
-
 #Region "Metodo classe"
-    Public Function ListaDatiAudit() As List(Of DatiAudit)
+    Public Function ListaDatiAudit(StabilimentoAudit As String) As List(Of DatiAudit)
         Dim con As New SqlConnection(connectionString)
         Dim cmd As New SqlCommand("", con)
         Dim dr As SqlDataReader
@@ -40,7 +39,7 @@ Public Class DatiAudit
             con.ConnectionString = connectionString
             con.Open()
 
-            sql = "SELECT * FROM tblAuditQASE order by AuditData Desc,NumeroAudit Desc"
+            sql = "SELECT * FROM tblAuditQASE Where 1=1 and StabilimentoAudit like '" + StabilimentoAudit + "' order by AuditData Desc,NumeroAudit Desc"
 
             cmd.CommandText = sql
             dr = cmd.ExecuteReader()
