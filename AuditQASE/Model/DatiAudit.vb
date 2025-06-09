@@ -24,6 +24,8 @@ Public Class DatiAudit
     Public Property CheckList As String = ""
     Public Property EsitoAudit As String = ""
     Public Property RifAC As String = ""
+    Public Property Raccomandazione As String = ""
+    Public Property Allegato As String = ""
 
 #End Region
 
@@ -66,6 +68,8 @@ Public Class DatiAudit
                 If Not dr.IsDBNull(dr.GetOrdinal("CheckList")) Then tmpDatiAudit.CheckList = dr.GetString(dr.GetOrdinal("CheckList")).Trim
                 If Not dr.IsDBNull(dr.GetOrdinal("EsitoAudit")) Then tmpDatiAudit.EsitoAudit = dr.GetString(dr.GetOrdinal("EsitoAudit")).Trim
                 If Not dr.IsDBNull(dr.GetOrdinal("RifAC")) Then tmpDatiAudit.RifAC = dr.GetString(dr.GetOrdinal("RifAC")).Trim
+                If Not dr.IsDBNull(dr.GetOrdinal("Raccomandazione")) Then tmpDatiAudit.Raccomandazione = dr.GetString(dr.GetOrdinal("Raccomandazione")).Trim
+                If Not dr.IsDBNull(dr.GetOrdinal("Allegato")) Then tmpDatiAudit.Allegato = dr.GetString(dr.GetOrdinal("Allegato")).Trim
 
                 ret.Add(tmpDatiAudit)
             Loop

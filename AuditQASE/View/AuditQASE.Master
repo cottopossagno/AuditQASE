@@ -25,8 +25,8 @@
 
     <!-- Bootstrap CSS -->
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/dataTables.bootstrap5.min.css" rel="stylesheet" />   
     <link href="../Style.css" rel="stylesheet" />
-    <link href="../Content/dataTables.bootstrap5.min.css" rel="stylesheet" />
     <link href="../Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet" />
     <link href="../Content/DataTables/css/buttons.dataTables.min.css" rel="stylesheet" />
     <link href="../Content/bootstrap-datepicker.min.css" rel="stylesheet" />
