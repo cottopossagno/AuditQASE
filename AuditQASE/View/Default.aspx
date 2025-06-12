@@ -82,8 +82,6 @@
             loadElencoAudit()
         }
 
-
-
         /* Funzione per aggiungere Righe in più se premo il pulsantino + su Elenco iniziale*/
         function format(d) {
             // `d` is the original data object for the row
@@ -104,8 +102,6 @@
                 '</table>'
             );
         }
-
-
         function loadElencoAudit() {
 
             $.fn.dataTable.render.moment = function (from, to, locale) {
@@ -125,8 +121,13 @@
                     return m.format(type === 'sort' || type === 'type' ? 'x' : to);
                 };
             };
+            if ($.fn.DataTable.isDataTable('#tblElencoAudit')) {
+                $('#tblElencoAudit').DataTable().clear().destroy();
+            }
 
-            $('#tblElencoAudit').DataTable().destroy();
+            $('#tblElencoAudit tbody').empty();
+
+            //$('#tblElencoAudit').DataTable().destroy();
             $('#tblElencoAudit tbody').html("<tr><td></td></tr>")
 
             tblElencoAudit = $('#tblElencoAudit').DataTable({
@@ -311,10 +312,9 @@
         }
 
 
-
-
         $(document).ready(function () {
-            loadElencoAudit()
+            //loadElencoAudit()
+            listSelMenuTendina()
 
             $('#SelStabilimento').change(function () {
                 loadElencoAudit()
@@ -328,7 +328,7 @@
                 loadElencoAudit()
             })
 
-            listSelMenuTendina()
+            
         })
 
 

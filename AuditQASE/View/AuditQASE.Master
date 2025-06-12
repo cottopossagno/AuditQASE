@@ -8,10 +8,10 @@
     <title></title>
         <!-- Bootstrap SCRIPT -->
     <script src="../Scripts/jquery-3.7.1.min.js"></script>
-    <script src="../Scripts/bootstrap.bundle.min.js"></script>
     <script src="../Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="../scripts/DataTables/dataTables.bootstrap4.js"></script>
+    <script src="../Scripts/bootstrap.bundle.min.js"></script>
     <script src="../Scripts/DataTables/dataTables.buttons.min.js"></script>
-    <script src="../Scripts/dataTables.bootstrap5.min.js"></script>
     <script src="../Scripts/DataTables/buttons.html5.js"></script>
     <script src="../Scripts/moment.min.js"></script>
     <script src="../Scripts/moment-with-locales.min.js"></script>
@@ -25,7 +25,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="../Content/dataTables.bootstrap5.min.css" rel="stylesheet" />   
+    <link href="../Content/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />   
     <link href="../Style.css" rel="stylesheet" />
     <link href="../Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet" />
     <link href="../Content/DataTables/css/buttons.dataTables.min.css" rel="stylesheet" />

@@ -1,4 +1,4 @@
-/*! DataTables Bootstrap 5 integration
+/*! DataTables Bootstrap 3 integration
  * © SpryMedia Ltd - datatables.net/license
  */
 
@@ -50,7 +50,7 @@ var DataTable = $.fn.dataTable;
 
 
 /**
- * DataTables integration for Bootstrap 5.
+ * DataTables integration for Bootstrap 3.
  *
  * This file sets the defaults and adds options to DataTables to style its
  * controls using Bootstrap. See https://datatables.net/manual/styling/bootstrap
@@ -65,26 +65,25 @@ $.extend( true, DataTable.defaults, {
 
 /* Default class modification */
 $.extend( true, DataTable.ext.classes, {
-	container: "dt-container dt-bootstrap5",
+	container: "dt-container form-inline dt-bootstrap",
 	search: {
-		input: "form-control form-control-sm"
+		input: "form-control input-sm"
 	},
 	length: {
-		select: "form-select form-select-sm"
+		select: "form-control input-sm"
 	},
 	processing: {
-		container: "dt-processing card"
+		container: "dt-processing panel panel-default"
 	},
 	layout: {
-		row: 'row mt-2 justify-content-between',
-		cell: 'd-md-flex justify-content-between align-items-center',
+		row: 'row dt-layout-row',
+		cell: 'dt-layout-cell',
 		tableCell: 'col-12',
-		start: 'dt-layout-start col-md-auto me-auto',
-		end: 'dt-layout-end col-md-auto ms-auto',
-		full: 'dt-layout-full col-md'
+		start: 'dt-layout-start col-sm-6',
+		end: 'dt-layout-end col-sm-6',
+		full: 'dt-layout-full col-sm-12'
 	}
 } );
-
 
 /* Bootstrap paging button renderer */
 DataTable.ext.renderer.pagingButton.bootstrap = function (settings, buttonType, content, active, disabled) {
@@ -99,10 +98,9 @@ DataTable.ext.renderer.pagingButton.bootstrap = function (settings, buttonType, 
 	}
 
 	var li = $('<li>').addClass(btnClasses.join(' '));
-	var a = $('<button>', {
-		'class': 'page-link',
-		role: 'link',
-		type: 'button'
+	var a = $('<a>', {
+		'href': disabled ? null : '#',
+		'class': 'page-link'
 	})
 		.html(content)
 		.appendTo(li);
