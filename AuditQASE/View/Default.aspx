@@ -159,7 +159,8 @@
                         alert('Error - ' + errorMessage);
                     }
                 },
-                dom: '<"H"<"left-col"Bl><"right-col"f>>t<"F"pri>',
+                //dom: '<"H"<"left-col"Bl><"right-col"f>>t<"F"pri>',
+                dom: '<"row mb-2"<"col-md-1 text-left"B><"col-md text-left"l><"col-md text-right"f>>t<"row mt-2"<"col"pri>>',
                 columnDefs: [{ targets: 0, className: "dt-control" }],
                 columns: [
                     { data: null, className: 'dt-control', orderable: false, defaultContent: '' },
@@ -339,42 +340,45 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="container-fluid">
-
         <div class="row">
-            <div class="col-4">&nbsp;</div>
-            <div class="col">
-                <div class="form-group">
-                    <label for="SelStabilimento" class="h6">Stabilimento</label>
-                    <select class="form-group filter" name="SelStabilimento" id="SelStabilimento" style="width: 150px">
-                    </select>
-
-                    <label for="SelAnno" class="h6">Anno</label>
-                    <select class="form-group filter" name="SelAnno" id="SelAnno" style="width: 150px">
-                    </select>
-
-                    <label for="SelAuditEffettuato" class="h6">Effettuato</label>
-                    <select class="form-group filter" name="SelAuditEffettuato" id="SelAuditEffettuato" style="width: 150px">
-                        <option value="Tutti" selected>Tutti</option>
-                        <option value="Si">Si</option>
-                        <option value="No">No</option>
-                    </select>
-
+            <div class="col-2">&nbsp;</div>
+            <div class="col text-center">
+                <div class="row">
+                    <div class="col">
+                        <label for="SelStabilimento" class="h6">Stabilimento</label>
+                        <select class="form-group filter" name="SelStabilimento" id="SelStabilimento" style="width: 150px">
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="SelAnno" class="h6">Anno</label>
+                        <select class="form-group filter" name="SelAnno" id="SelAnno" style="width: 150px">
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="SelAuditEffettuato" class="h6">Effettuato</label>
+                        <select class="form-group filter" name="SelAuditEffettuato" id="SelAuditEffettuato" style="width: 150px">
+                            <option value="Tutti" selected>Tutti</option>
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
                 </div>
 
             </div>
+            <div class="col-2">&nbsp;</div>
         </div>
 
         <div class="row">
 
             <div class="col">
 
-<%--                <div class="col">
+                <%--                <div class="col">
                     <div class="form-group text-left mb-1">
                         <div id="btnNuovoAudit" class="btn btn-sm btn-primary">Nuovo</div>
                     </div>
                 </div>--%>
 
-                <table id="tblElencoAudit" class="compact table table-striped table-bordered ColoreVerde" style="width: 100%;">
+                <table id="tblElencoAudit" class="compact table table-striped table-bordered" style="width: 100%;">
                     <thead>
                         <tr>
                             <th></th>
@@ -419,165 +423,166 @@
                                             <label class="col-2 text-center fw-bold" for="txtEditNumeroAudit">NUMERO</label>
                                             <div class="col-2">
                                                 <input type="text" class="form-control" id="txtNumeroAudit">
-<%--                                            </div>
+                                                <%--                                            </div>
                                             <label class="col-2 text-center fw-bold" for="txtDataAudit">DEL</label>
                                             <div class="col-2">
                                                 <input type="text" class="form-control" id="txtDataAudit">
                                             </div>--%>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-2">
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="row">
-                                            <label class="col-2 fw-bold" for="txtReparto">REPARTO</label>
-                                            <div class="col-2">
-                                                <input type="text" class="form-control" id="txtReparto">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row mb-2">
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <label class="col-2 fw-bold" for="txtObiettivi">OBIETTIVI</label>
-                                            <div class="col-10">
-                                                <input type="text" class="form-control" id="txtObiettivi">
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="row">
+                                                <label class="col-2 fw-bold" for="txtReparto">REPARTO</label>
+                                                <div class="col-2">
+                                                    <input type="text" class="form-control" id="txtReparto">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row mb-2">
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="row">
-                                            <label class="col-2 fw-bold" for="txtResponsabile">RESPONSABILE</label>
-                                            <div class="col-2">
-                                                <input type="text" class="form-control" id="txtResponsabile">
-                                            </div>
-                                            <label class="col-2 text-center fw-bold" for="txtAuditSecondo">AUDIT</label>
-                                            <div class="col-2">
-                                                <input type="text" class="form-control" id="txtAuditSecondo">
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <label class="col-2 fw-bold" for="txtObiettivi">OBIETTIVI</label>
+                                                <div class="col-10">
+                                                    <input type="text" class="form-control" id="txtObiettivi">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row mb-2">
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <label class="col-2 fw-bold" for="txtLeadAuditor">LEAD AUDITOR</label>
-                                            <div class="col-10">
-                                                <input type="text" class="form-control" id="txtLeadAuditor">
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="row">
+                                                <label class="col-2 fw-bold" for="txtResponsabile">RESPONSABILE</label>
+                                                <div class="col-2">
+                                                    <input type="text" class="form-control" id="txtResponsabile">
+                                                </div>
+                                                <label class="col-2 text-center fw-bold" for="txtAuditSecondo">AUDIT</label>
+                                                <div class="col-2">
+                                                    <input type="text" class="form-control" id="txtAuditSecondo">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row mb-2">
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="row">
-                                            <label class="col-2 fw-bold" for="txtTeamAudit1">TEAM AUDIT</label>
-                                            <div class="col-2">
-                                                <input type="text" class="form-control" id="txtTeamAudit1">
-                                            </div>
-                                            <div class="col-2">
-                                                <input type="text" class="form-control" id="txtTeamAudit2">
-                                            </div>
-                                            <div class="col-2">
-                                                <input type="text" class="form-control" id="txtTeamAudit3">
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <label class="col-2 fw-bold" for="txtLeadAuditor">LEAD AUDITOR</label>
+                                                <div class="col-10">
+                                                    <input type="text" class="form-control" id="txtLeadAuditor">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row mb-2">
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="row">
-                                            <label class="col-2 fw-bold" for="txtIntervistati1">INTERVISTATI</label>
-                                            <div class="col-2">
-                                                <input type="text" class="form-control" id="txtIntervistati1">
-                                            </div>
-                                            <div class="col-2">
-                                                <input type="text" class="form-control" id="txtIntervistati2">
-                                            </div>
-                                            <div class="col-2">
-                                                <input type="text" class="form-control" id="txtIntervistati3">
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="row">
+                                                <label class="col-2 fw-bold" for="txtTeamAudit1">TEAM AUDIT</label>
+                                                <div class="col-2">
+                                                    <input type="text" class="form-control" id="txtTeamAudit1">
+                                                </div>
+                                                <div class="col-2">
+                                                    <input type="text" class="form-control" id="txtTeamAudit2">
+                                                </div>
+                                                <div class="col-2">
+                                                    <input type="text" class="form-control" id="txtTeamAudit3">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row mb-2">
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="row">
-                                            <div class="mb-3">
-                                                <label for="txtRapporto" class="form-label fw-bold">RAPPORTO</label>
-                                                <textarea class="form-control" id="txtRapporto" rows="2"></textarea>
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="row">
+                                                <label class="col-2 fw-bold" for="txtIntervistati1">INTERVISTATI</label>
+                                                <div class="col-2">
+                                                    <input type="text" class="form-control" id="txtIntervistati1">
+                                                </div>
+                                                <div class="col-2">
+                                                    <input type="text" class="form-control" id="txtIntervistati2">
+                                                </div>
+                                                <div class="col-2">
+                                                    <input type="text" class="form-control" id="txtIntervistati3">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row mb-2">
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="row">
-                                            <label class="col-2 fw-bold" for="txtCheckList">CHECK LIST</label>
-                                            <div class="col-2">
-                                                <input type="text" class="form-control" id="txtCheckList">
-                                            </div>
-                                            <label class="col-2 text-center fw-bold" for="txtAzioneCorrettiva">AZIONE CORRETTIVA</label>
-                                            <div class="col-2">
-                                                <input type="text" class="form-control" id="txtAzioneCorrettiva">
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="row">
+                                                <div class="mb-3">
+                                                    <label for="txtRapporto" class="form-label fw-bold">RAPPORTO</label>
+                                                    <textarea class="form-control" id="txtRapporto" rows="2"></textarea>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row mb-2">
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <label class="col-2 fw-bold" for="selEsitoAudit">ESITO AUDIT</label>
-                                            <div class="col-10">
-                                                <input type="text" class="form-control" id="selEsitoAudit">
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="row">
+                                                <label class="col-2 fw-bold" for="txtCheckList">CHECK LIST</label>
+                                                <div class="col-2">
+                                                    <input type="text" class="form-control" id="txtCheckList">
+                                                </div>
+                                                <label class="col-2 text-center fw-bold" for="txtAzioneCorrettiva">AZIONE CORRETTIVA</label>
+                                                <div class="col-2">
+                                                    <input type="text" class="form-control" id="txtAzioneCorrettiva">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <label class="col-2 fw-bold" for="selEsitoAudit">ESITO AUDIT</label>
+                                                <div class="col-10">
+                                                    <input type="text" class="form-control" id="selEsitoAudit">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -589,5 +594,4 @@
             </div>
         </div>
     </div>
-
 </asp:Content>
