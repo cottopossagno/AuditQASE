@@ -1,5 +1,5 @@
 ﻿body {
-    background-color:#1db430
+    background-color:#ffa500
 }
 
 .ColoreIntestazione {
@@ -8,4 +8,24 @@
 
 .ColoreGiallo {
     background-color: #ffd800
+}
+
+.ColoreVerde {
+    background-color:#17b60b
+}
+
+table.dataTable td.dt-control {
+    text-align: center;
+    background: url("./Image/details_open.png") no-repeat center center;
+    cursor: pointer;
+}
+
+    table.dataTable td.dt-control:before {
+        display: inline-block;
+        color: rgba(0, 0, 0, 0.5);
+        background: url("./Image/details_open.png") no-repeat center center;
+    }
+
+table.dataTable tr.dt-hasChild td.dt-control:before {
+    background: url("./Image/details_close.png") no-repeat center center;
 }

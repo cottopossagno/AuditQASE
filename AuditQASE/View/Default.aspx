@@ -56,6 +56,29 @@
                 }
             });
 
+            $.ajax({
+                url: "../Control/ws_SelezioneAnniAudit.asmx/GetListAnniAudit",
+                type: "POST",
+                async: false,
+                data:
+                {
+
+                },
+                success: function (mydata) {
+                    //console.log(mydata.data)
+                    var selectElement = $("#SelAnno").empty();
+                    selectElement.append($("<option>").val('%').text('Tutti'));
+                    $.each(mydata.data, function (index, tipo) {
+                        selectElement.append($("<option>").val(tipo.AnnoAudit).text(tipo.AnnoAudit));
+
+                    });
+                },
+                error: function (xhr, status, error) {
+                    var errorMessage = xhr.status + ': ' + xhr.statusText
+                    alert('Error - ' + errorMessage);
+                }
+            });
+
             loadElencoAudit()
         }
 
@@ -109,7 +132,11 @@
             tblElencoAudit = $('#tblElencoAudit').DataTable({
                 processing: true,
                 serverSide: false,
-                pageLength: 500,
+                lengthMenu: [
+                    [10, 25, 50, 100, -1],
+                    ['10', '25', '50', '100', 'Tutti']
+                ],
+                pageLength: 50,
                 order: [[3, 'desc']],   //se devo ordinare
                 ajax:
                 {
@@ -118,7 +145,9 @@
                     url: "../Control/ws_ElencoAudit.asmx/GetListElencoAudit",
                     data:
                     {
-                            "StabilimentoAudit":$('#SelStabilimento').val()
+                        "StabilimentoAudit": $('#SelStabilimento').val(),
+                        "Anno": $('#SelAnno').val(),
+                        "AuditEffettuato": $('#SelAuditEffettuato option:selected').val()
                     },
                     dataSrc: function (json) {
                         //  alert("Done!");
@@ -139,9 +168,30 @@
                     { data: "Reparto", className: "text-left", width: "500" },
                     { data: "AuditData", className: "text-center text-nowrap", render: $.fn.dataTable.render.moment('DD/MM/YYYY') },
                     { data: "NumeroAudit", className: "text-center", width: "80" },
-                    { data: "AuditEffettuato", className: "text-center", width: "40" },
+                    {
+                        data: "AuditEffettuato", className: "text-center", width: "40",
+                        render: function (data, type, row) {
+                            if (data == 0) {
+                                return "<div class='text-center'><img width='24' height='24' src='../Image/red.png' /></div>"
+                            }
+                            else {
+                                return "<div class='text-center'><img width='24' height='24' src='../Image/green.png' /></div>"
+                            }
+                        }
+
+                    },
                     { data: "EsitoAudit", className: "text-left", width: "300" },
-                    { data: "AuditScaduto", className: "text-center", width: "40" },
+                    {
+                        data: "AuditScaduto", className: "text-center", width: "40",
+                        render: function (data, type, row) {
+                            if (data == 0) {
+                                return "<div class='text-center'><img width='24' height='24' src='../Image/green.png' /></div>"
+                            }
+                            else {
+                                return "<div class='text-center'><img width='24' height='24' src='../Image/red.png' /></div>"
+                            }
+                        }
+                    },
                     { data: "RifAC", className: "text-center", width: "80" },
                     {
                         data: "ID", className: "text-center text-nowrap",
@@ -164,7 +214,84 @@
                 language: {
                     url: '../resources/it.json'
                 },
-            })
+
+                drawCallback: function () {
+                    $('.btnEditRapportoAudit').on("click", function () {   //evento quando si clicca il pulsante EDIT sulla riga della pagina di default
+                        isEditMode = true;
+
+                        var dt = $('#tblElencoAudit').DataTable();
+                        dt.column(1).visible(true);
+                        var $row = $(this).closest("tr"),        // Finds the closest row <tr>
+                            $tds = $row.find("td:nth-child(2)") // Finds the 1 <td> element
+                        var SelID = $tds.text()
+                        dt.column(1).visible(false);
+
+                        //$('#btnSalvaDatiNuovaNC').hide()
+                        //$('#btnSalvaEditNC').show()
+                        //$('#divShowPreview').hide();
+
+                        $.post("../Control/ws_DatiAudit.asmx/GetListDatiAudit",
+                            {
+                                "selID": SelID
+                            },
+                            function (data) {
+                                var json = data.data;
+                                //alert(JSON.stringify(json))
+                                $("#txtID").val(json.ID);
+                                $("#selEditStabUfficio").val(json.StabilimentoAudit).trigger('change');
+                                //$("#txtEditNumeroAudit").val(json.NumeroAudit);
+                                //$("#txtDataNC").datepicker('setDate', window.moment(json.Data).isValid() ? window.moment(json.Data).format("DD/MM/YYYY") : "").trigger('change');
+
+                                //$("#selEditTipoNC").val(json.TipoNC).trigger('change');
+                                //$("#selEditAreaRilevazione").val(json.AreaRilevazione).trigger('change');
+                                //$("#txtRilevatoDa").val(json.RilevatoDa);
+
+                                //$("#selEditBreveNC").val(json.BreveNC).trigger('change');
+                                //$("#txtDescrizioneNC").val(json.DescrizioneNC);
+
+                                //$("#selEditBreveTrattamento").val(json.BreveTrattamento).trigger('change');
+                                //$("#txtTrattamento").val(json.Trattamento);
+
+                                //$("#selEditBreveEfficacia").val(json.Efficacia).trigger('change');
+                                //$("#selEditBreveRipetibile").val(json.Ripetibile).trigger('change');
+
+                                //$("#txtCausaNC").val(json.CausaNC);
+                                //$("#txtEfficacia").val(json.DescrEfficacia);
+                                //$("#txtRipetibile").val(json.RipetibDove);
+
+                                //$("#txtNumeroAC1").val(json.ACnumero1);
+                                //$("#txtDataAC1").datepicker('setDate', window.moment(json.ACdel1).isValid() ? window.moment(json.ACdel1).format("DD/MM/YYYY") : "").trigger('change');
+                                //$("#txtNumeroAC2").val(json.ACnumero2);
+                                //$("#txtDataAC2").datepicker('setDate', window.moment(json.ACdel2).isValid() ? window.moment(json.ACdel2).format("DD/MM/YYYY") : "").trigger('change');
+                                //$("#txtNumeroAC3").val(json.ACnumero3);
+                                //$("#txtDataAC3").datepicker('setDate', window.moment(json.ACdel3).isValid() ? window.moment(json.ACdel3).format("DD/MM/YYYY") : "").trigger('change');
+
+                                //$("#chkMancanzaComunicazione").prop('checked', json.CarenzaComunicazione);
+                                //$("#chkMancanzaFormazione").prop('checked', json.CarenzaFormazione);
+                                //$("#chkMancanzaUsoDeiDPI").prop('checked', json.MancatoUsoDeiDPI);
+
+                                //$("#txtNote").val(json.Note);
+                                //$("#txtNCChiusaIl").datepicker('setDate', window.moment(json.ChiusaIl).isValid() ? window.moment(json.ChiusaIl).format("DD/MM/YYYY") : "").trigger('change');
+
+                                //$("#selEditCopiaA1").val(json.CopiaA1).trigger('change');
+                                //$("#selEditCopiaA2").val(json.CopiaA2).trigger('change');
+                                //$("#selEditCopiaA3").val(json.CopiaA3).trigger('change');
+                                //$("#selEditCopiaA4").val(json.CopiaA4).trigger('change');
+                                //$("#selEditCopiaA5").val(json.CopiaA5).trigger('change');
+                                //$("#selEditCopiaA6").val(json.CopiaA6).trigger('change');
+
+                                //$("#txtNCAllegato01").val(json.Allegato1);
+                                //$("#txtNCAllegato02").val(json.Allegato2);
+                                //$("#txtNCAllegato03").val(json.Allegato3);
+
+                                $('#divShowInsertNC').modal('show');
+
+                            });
+                    });
+                },
+
+            }
+            )
 
             // Add event listener for opening and closing details
             $('#tblElencoAudit tbody').on('click', 'td.dt-control', function () {
@@ -193,8 +320,13 @@
                 loadElencoAudit()
             })
 
-            
-            /*loadStabilimenti()*/
+            $('#SelAnno').change(function () {
+                loadElencoAudit()
+            })
+
+            $('#SelAuditEffettuato').change(function () {
+                loadElencoAudit()
+            })
 
             listSelMenuTendina()
         })
@@ -209,24 +341,26 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-3">
+            <div class="col-4">&nbsp;</div>
+            <div class="col">
                 <div class="form-group">
-                    <label for="SelStabilimento" class="h6 text-white">Stabilimento</label>
+                    <label for="SelStabilimento" class="h6">Stabilimento</label>
                     <select class="form-group filter" name="SelStabilimento" id="SelStabilimento" style="width: 150px">
                     </select>
+
+                    <label for="SelAnno" class="h6">Anno</label>
+                    <select class="form-group filter" name="SelAnno" id="SelAnno" style="width: 150px">
+                    </select>
+
+                    <label for="SelAuditEffettuato" class="h6">Effettuato</label>
+                    <select class="form-group filter" name="SelAuditEffettuato" id="SelAuditEffettuato" style="width: 150px">
+                        <option value="Tutti" selected>Tutti</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                    </select>
+
                 </div>
 
-                <%--<select class="form-group" name="SelStabilimento" id="SelStabilimento" style="width: 200px">
-                                <option value="%" selected>Tutti</option>
-                                <option value="CUNIAL">CUNIAL</option>
-                                <option value="FRATELLI VARDANEGA">FRATELLI VARDANEGA</option>
-                                <option value="ILCA">ILCA</option>
-                                <option value="MAGAZZINO VENTILATI">MAGAZZINO VENTILATI</option>
-                                <option value="MONFENERA">MONFENERA</option>
-                                <option value="PRELAVORAZIONI">PRELAVORAZIONI</option>
-                                <option value="UFFICI">UFFICI</option>
-                                <option value="VARDANEGA ISIDORO">VARDANEGA ISIDORO</option>
-                            </select>--%>
             </div>
         </div>
 
@@ -240,7 +374,7 @@
                     </div>
                 </div>--%>
 
-                <table id="tblElencoAudit" class="compact table table-striped table-bordered" style="width: 100%;">
+                <table id="tblElencoAudit" class="compact table table-striped table-bordered ColoreVerde" style="width: 100%;">
                     <thead>
                         <tr>
                             <th></th>
@@ -278,18 +412,18 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="row">
-                                            <label class="col-2 fw-bold" for="selNomeStabilimento">STABILIMENTO</label>
+                                            <label class="col-2 fw-bold" for="selEditStabUfficio">STABILIMENTO</label>
                                             <div class="col-2">
                                                 <input type="text" class="form-control" id="selNomeStabilimento">
                                             </div>
-                                            <label class="col-2 text-center fw-bold" for="txtNumeroAudit">NUMERO</label>
+                                            <label class="col-2 text-center fw-bold" for="txtEditNumeroAudit">NUMERO</label>
                                             <div class="col-2">
                                                 <input type="text" class="form-control" id="txtNumeroAudit">
-                                            </div>
+<%--                                            </div>
                                             <label class="col-2 text-center fw-bold" for="txtDataAudit">DEL</label>
                                             <div class="col-2">
                                                 <input type="text" class="form-control" id="txtDataAudit">
-                                            </div>
+                                            </div>--%>
                                         </div>
                                     </div>
                                 </div>

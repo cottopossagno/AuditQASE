@@ -21,7 +21,7 @@ Public Class ElencoAudit
 #End Region
 
 #Region "Metodo classe"
-    Public Function ListaElencoAudit(StabilimentoAudit As String) As List(Of ElencoAudit)
+    Public Function ListaElencoAudit(StabilimentoAudit As String, Anno As String, AuditEffettuato As String) As List(Of ElencoAudit)
         Dim con As New SqlConnection(connectionString)
         Dim cmd As New SqlCommand("", con)
         Dim dr As SqlDataReader
@@ -36,6 +36,17 @@ Public Class ElencoAudit
 
             If StabilimentoAudit <> "" Then
                 sql = sql + " and StabilimentoAudit like '" + StabilimentoAudit + "'"
+            End If
+
+            If Anno <> "" Then
+                sql = sql + " and Anno like '" + Anno + "'"
+            End If
+
+            If AuditEffettuato = "No" Then
+                sql = sql + " and AuditEffettuato = 0"
+            End If
+            If AuditEffettuato = "Si" Then
+                sql = sql + " and AuditEffettuato <> 0"
             End If
 
             sql = sql + " order by Anno Desc,StabilimentoAudit, NumeroAudit"

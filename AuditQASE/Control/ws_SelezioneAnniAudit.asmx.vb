@@ -9,20 +9,20 @@ Imports Newtonsoft.Json
 <System.Web.Services.WebService(Namespace:="http://tempuri.org/")> _
 <System.Web.Services.WebServiceBinding(ConformsTo:=WsiProfiles.BasicProfile1_1)> _
 <ToolboxItem(False)> _
-Public Class ws_ElencoAudit
+Public Class ws_SelezioneAnniAudit
     Inherits System.Web.Services.WebService
 
     <WebMethod()>
     <ScriptMethod(ResponseFormat:=ResponseFormat.Json, UseHttpGet:=True)>
-    Public Sub GetListElencoAudit(StabilimentoAudit As String, Anno As String, AuditEffettuato As String)
-        Dim myElencoAudit As New ElencoAudit()
+    Public Sub GetListAnniAudit()
+        Dim myNomiAudit As New SelezioneAnniAudit()
         Dim jsonElement As New Dictionary(Of String, Object)
-        Dim ret As New List(Of ElencoAudit)
+        Dim ret As New List(Of SelezioneAnniAudit)
         Dim jsonRet As String
         Dim TotRec As Integer = ret.Count
 
         Try
-            ret = myElencoAudit.ListaElencoAudit(StabilimentoAudit, Anno, AuditEffettuato) 'questa funzione proviene dalla classe 
+            ret = myNomiAudit.ListaAnniAudit 'questa funzione proviene dalla classe 
 
             jsonElement.Add("draw", Context.Request.Params("draw"))
             jsonElement.Add("recordsTotal", ret.Count)

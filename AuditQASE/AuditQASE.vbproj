@@ -283,6 +283,7 @@
     <Content Include="Control\ws_DatiAudit.asmx" />
     <Content Include="Control\ws_ElencoAudit.asmx" />
     <Content Include="Control\ws_GestioneParametri.asmx" />
+    <Content Include="Control\ws_SelezioneAnniAudit.asmx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Image\details_close.png" />
     <Content Include="Image\details_open.png" />
@@ -582,8 +583,13 @@
       <DependentUpon>ws_GestioneParametri.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Control\ws_SelezioneAnniAudit.asmx.vb">
+      <DependentUpon>ws_SelezioneAnniAudit.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Model\DatiAudit.vb" />
     <Compile Include="Model\ElencoAudit.vb" />
+    <Compile Include="Model\SelezioneAnniAudit.vb" />
     <Compile Include="Model\Stabilimenti.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
