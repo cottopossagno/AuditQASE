@@ -1,4 +1,4 @@
-﻿Imports System
+Imports System
 Imports System.Reflection
 Imports System.Runtime.InteropServices
 
@@ -30,5 +30,7 @@ Imports System.Runtime.InteropServices
 ' utilizzando l'asterisco (*) come illustrato di seguito:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("2025.6.12.0")>
+<Assembly: AssemblyFileVersion("2025.6.12.0")>
+
+<assembly: AssemblyInformationalVersion("2025.6.12.0")>
